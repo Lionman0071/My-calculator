@@ -22,18 +22,28 @@
     border-radius: 10px;
 }
 
-.calculator form input{
+.calculator form input {
     border: 0;
     outline: 0;
     width: 60px;
     height: 60px;
     border-radius: 10px;
-    box-shadow: -8px -8px 15px rgba(131, 15, 0, 0.1),5px 5px 15px rgba(233, 10, 10, 0.2);
-    background: transparent;
+    background: linear-gradient(145deg, #2a0b05, #1c0603); /* เพิ่มไล่เฉดสี */
     color: #ffffff;
     cursor: pointer;
     margin: 10px;
+    box-shadow: inset -3px -3px 8px rgba(255, 255, 255, 0.1),
+                8px 8px 15px rgba(0, 0, 0, 0.2); /* เพิ่มความนูน */
+    font-size: 20px; /* เพิ่มขนาดตัวอักษร */
+    font-weight: bold; /* ทำให้ตัวอักษรหนา */
+    transition: all 0.2s ease-in-out; /* เพิ่มเอฟเฟกต์เวลา hover */
 }
+
+.calculator form input:hover {
+    transform: scale(1.1); /* ขยายปุ่มเล็กน้อยเมื่อ hover */
+    box-shadow: 0 0 15px rgba(233, 10, 10, 0.5); /* เพิ่มแสงรอบปุ่ม */
+}
+
 
 form .display{
     display: flex;
