@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator By chayanon Thongkao</title>
+    <title>Calculator By Chayanon Thongkao</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,40 +11,74 @@
         <div class="calculator">
             <form>
                 <div class="display">
-                    <input type="text" name="display"> 
+                    <input type="text" name="display" id="display" readonly> 
                 </div>
                 <div>
-                    <input type="button" value="AC" onclick="display.value = '' ">
-                    <input type="button" value="DE" onclick="display.value = display.value.toString().slice (0,-1)">
-                    <input type="button" value="." onclick="display.value += '.' ">
-                    <input type="button" value="/" onclick="display.value += '/' ">
+                    <input type="button" value="AC" onclick="clearDisplay()">
+                    <input type="button" value="DE" onclick="deleteLastChar()">
+                    <input type="button" value="." onclick="addToDisplay('.')">
+                    <input type="button" value="/" onclick="addToDisplay('/')">
                 </div>
                 <div>
-                    <input type="button" value="7" onclick="display.value += '7' ">
-                    <input type="button" value="8" onclick="display.value += '8' ">
-                    <input type="button" value="9" onclick="display.value += '9' ">
-                    <input type="button" value="*" onclick="display.value += '*' ">
+                    <input type="button" value="7" onclick="addToDisplay('7')">
+                    <input type="button" value="8" onclick="addToDisplay('8')">
+                    <input type="button" value="9" onclick="addToDisplay('9')">
+                    <input type="button" value="*" onclick="addToDisplay('*')">
                 </div>
                 <div>
-                    <input type="button" value="4" onclick="display.value += '4' ">
-                    <input type="button" value="5" onclick="display.value += '5' ">
-                    <input type="button" value="6" onclick="display.value += '6' ">
-                    <input type="button" value="-" onclick="display.value += '-' ">
+                    <input type="button" value="4" onclick="addToDisplay('4')">
+                    <input type="button" value="5" onclick="addToDisplay('5')">
+                    <input type="button" value="6" onclick="addToDisplay('6')">
+                    <input type="button" value="-" onclick="addToDisplay('-')">
                 </div>
                 <div>
-                    <input type="button" value="1" onclick="display.value += '1' ">
-                    <input type="button" value="2" onclick="display.value += '2' ">
-                    <input type="button" value="3" onclick="display.value += '3' ">
-                    <input type="button" value="+" onclick="display.value += '+' ">
+                    <input type="button" value="1" onclick="addToDisplay('1')">
+                    <input type="button" value="2" onclick="addToDisplay('2')">
+                    <input type="button" value="3" onclick="addToDisplay('3')">
+                    <input type="button" value="+" onclick="addToDisplay('+')">
                 </div>
                 <div>
-                    <input type="button" value="00"onclick="display.value += '00' ">
-                    <input type="button" value="0" onclick="display.value += '0' ">
-                    <input type="button" value="=" onclick="display.value = eval(display.value)" class="equal">
+                    <input type="button" value="00" onclick="addToDisplay('00')">
+                    <input type="button" value="0" onclick="addToDisplay('0')">
+                    <input type="button" value="=" onclick="calculateResult()" class="equal">
                 </div>
             </form>
         </div>
     </div>
 
+    <script>
+        // Function to add values to the display
+        function addToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        // Function to clear the display
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        // Function to delete the last character
+        function deleteLastChar() {
+            let display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+
+        // Function to calculate the result safely
+        function calculateResult() {
+            let display = document.getElementById('display');
+            try {
+                let result = eval(display.value);
+                // Check if the result is a number and not NaN
+                if (isNaN(result) || result === Infinity || result === -Infinity) {
+                    display.value = "Error";
+                } else {
+                    display.value = result;
+                }
+            } catch (e) {
+                // If eval throws an error, show an error message
+                display.value = "Error";
+            }
+        }
+    </script>
 </body>
 </html>
